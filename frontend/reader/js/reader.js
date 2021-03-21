@@ -7,7 +7,6 @@ function fetchDatabase() {
 			const res_arr = JSON.parse(this.responseText)
 
 			for(let value of res_arr){
-				console.log(value['quoteid'])
 				const single_quote = document.createElement("div");
 				single_quote.classList.add('single_quote')
 				const quote_text = document.createElement("div");

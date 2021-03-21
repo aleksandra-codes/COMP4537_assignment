@@ -5,7 +5,6 @@ function fetchDatabase() {
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) { 
 			const res_arr = JSON.parse(this.responseText)
-            console.log(res_arr)
 
 			for(let value of res_arr){
 				const single_quote = document.createElement("div");
@@ -35,12 +34,10 @@ function fetchDatabase() {
 				quote_author.innerHTML = value['author']
                 delete_btn.setAttribute('id', value['quoteid']) 
                 delete_btn.onclick = function(){ 
-                    console.log('onclick function on delete');
                     deleteQuote();
                 }
                 update_btn.setAttribute('id', value['quoteid']) 
                 update_btn.onclick = function() {
-                    console.log('onclick function on update');
                     textToUpdate();
                 }
 				single_quote.append(quote_text)
@@ -70,7 +67,6 @@ function sendData() {
     results["author"] = document.getElementById("author_input").value;
     
     let data = JSON.stringify(results);
-    console.log(data)
     // send the data as a POST request
     xhttp.open("POST", url);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -82,26 +78,20 @@ function deleteQuote() {
     const xhttp = new XMLHttpRequest();
     const url = "https://www.aleksandrasorokina.com/quotes_app/";
     let data = event.target.getAttribute('id')
-    console.log('my data ' + data)
     xhttp.open("DELETE", url + data, true);
     xhttp.onload = function() {
 		if (this.readyState == 4 && this.status == 200) { 
 		}
 	};
-    console.log(xhttp)
     xhttp.setRequestHeader("Content-type", "text/plain");
-    console.log(xhttp)
     xhttp.send(data);
 }
 
 function textToUpdate() {
     let id = event.target.getAttribute('id');
     update_btn = document.getElementById(id);
-    console.log('my data ' + id)
 
     let single = document.getElementById(`single${id}`)
-    console.log(single)
-
     let quote_text_div = single.querySelector('.quote_text')
     let quote_author_text_div = single.querySelector('.quote_author')
     let quote_btns_div = single.querySelector('.quote_btns')
@@ -111,9 +101,6 @@ function textToUpdate() {
     quote_text_div.parentNode.removeChild(quote_text_div)
     quote_author_text_div.parentNode.removeChild(quote_author_text_div)
     quote_btns_div.parentNode.removeChild(quote_btns_div)
-
-    console.log(quote_text)
-    console.log(quote_author_text)
 
     const quote = document.createElement("textarea");
     quote.setAttribute('id', "quote_text_input_update")
@@ -135,7 +122,6 @@ function textToUpdate() {
     single.append(quote_author)
 
     save_btn.onclick = function(){ 
-        console.log('onclick function on delete');
         updateQuote(id);
         textareToDiv(id)
     }
@@ -146,8 +132,6 @@ function textToUpdate() {
 
 function textareToDiv(id) {
     let single = document.getElementById(`single${id}`)
-    console.log(single)
-
     const quote_text = document.createElement("div");
     quote_text.classList.add('quote_text')
     const quote_textarea = document.getElementById("quote_text_input_update")
@@ -183,12 +167,10 @@ function textareToDiv(id) {
     
     delete_btn.setAttribute('id', id) 
     delete_btn.onclick = function(){ 
-        console.log('onclick function on delete');
         deleteQuote();
     }
     update_btn.setAttribute('id', id) 
     update_btn.onclick = function() {
-        console.log('onclick function on update');
         textToUpdate();
     }
 
@@ -213,14 +195,10 @@ function updateQuote(id) {
 
     let results = new Object();
     results["quoteid"] = id
-    console.log("results['quoteid']" + results["quoteid"])
     results["quote"] = document.getElementById("quote_text_input_update").value;
-    console.log(results["quote"])
     results["author"] = document.getElementById("author_input_update").value;
-    console.log(results["author"])
 
     let data = JSON.stringify(results);
-    console.log(data)
     xhttp.open("PUT", url);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(data);
