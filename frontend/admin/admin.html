@@ -1,0 +1,57 @@
+<html lang = "en">
+  <head>
+    <title>Sorokina</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Latest compiled and minified CSS -->
+    <!-- <link rel="icon" href="./images/logo_16.png" type="image/png" sizes="16x16"> -->
+    <link rel="stylesheet" href="./css/admin.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Lato:wght@300&display=swap" rel="stylesheet">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="./js/questions.json"></script> -->
+    <script type="text/javascript" src="./js/admin.js"></script>
+    <script type="text/javascript">
+      window.onload = fetchDatabase;
+      // document.getElementById('save_btn').addEventListener("click", sendData)
+  </script>
+
+  </head>
+  <body id="homePage">
+    <div class="container">
+        <div class="page_title">
+            <h1 > Quotes <span>Quote creation page</span></h1>
+        </div>
+        <div class="btn_container">
+          <button type="button" id="back"  class="btn btn btn1" onclick="location.href='../index.html'">Back</button>
+        </div>
+        <!-- <div class="top_fields"> -->
+          <div class="input_form">
+            <label for="quote_text_input">Quote:</label>
+            <textarea id="quote_text_input" name="quote_textarea" rows="4" cols="50"></textarea>
+            <label for="author_input">Author:</label>
+            <input type="text" id="author_input">
+          </div>
+          <div class="btn_container">
+          <button id="save_btn" class="btn btn btn1" name="quiz" onclick="sendData()">Save</button>
+          </div>
+
+        <!-- </div> -->
+
+        <div id="quote_list">
+          <!-- <div class="single_quote" >
+            <div class="quote_text">Age is an issue of mind over matter. If you don't mind, it doesn't matter.
+                    The man who does not read good books has no advantage over the man who cannot read them.
+                    I have never let my schooling interfere with my education.</div>
+            <div class="quote_author">Mark Twain</div>
+
+            <div class="quote_btns">
+              <button class="btn_quote btn btn1 update_quote_btn" name="quiz">Update</button>
+              <button class="btn_quote btn btn1 delete_quote_btn" name="quiz">Delete</button>
+            </div>
+        </div> -->
+    </div>
+  </body>
+</html>
